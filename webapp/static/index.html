@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector-Flow: Insight Layer Portal</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🔍 Vector-Flow: Insight Layer Portal</h1>
+                <p class="subtitle">Understand why RAG retrieval works or fails</p>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <!-- Left Panel: Document Ingestion & Query -->
+            <section class="panel documents-panel">
+                <h2>📄 Documents & Query</h2>
+                
+                <!-- Document ingestion -->
+                <div class="section">
+                    <h3>Step 1: Ingest Documents</h3>
+                    <div class="button-group">
+                        <button id="loadSampleBtn" class="btn btn-primary">Load Sample Docs (Pharma)</button>
+                        <button id="loadCustomBtn" class="btn btn-secondary">Load Custom Docs</button>
+                    </div>
+                    <textarea id="docsInput" placeholder="Paste documents here (one per line or separated by ---)" rows="8"></textarea>
+                    <button id="ingestBtn" class="btn btn-success">Ingest Documents</button>
+                    <div id="ingestStatus" class="status-message"></div>
+                </div>
+
+                <!-- Query interface -->
+                <div class="section">
+                    <h3>Step 2: Query</h3>
+                    <input type="text" id="queryInput" placeholder="Enter your query..." class="query-input">
+                    <div class="query-controls">
+                        <label for="kInput">Top K Results:</label>
+                        <input type="number" id="kInput" value="5" min="1" max="20" class="k-input">
+                    </div>
+                    <button id="queryBtn" class="btn btn-primary">Run Query & Analyze</button>
+                    <div id="queryStatus" class="status-message"></div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Results & Analysis -->
+            <section class="panel results-panel">
+                <h2>📊 Analysis & Results</h2>
+                
+                <!-- Results display -->
+                <div id="resultsContainer" class="results-container">
+                    <div class="empty-state">
+                        <p>Configure documents and submit a query to see results</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Results template (hidden) -->
+        <template id="resultsTemplate">
+            <!-- Query display -->
+            <div class="query-display">
+                <h3>Query: <span id="queryText"></span></h3>
+            </div>
+
+            <!-- Top K Results -->
+            <div class="section">
+                <h4>Top K Results</h4>
+                <div id="topResultsList" class="results-list"></div>
+            </div>
+
+            <!-- Observations -->
+            <div class="section">
+                <h4>⚠️ Observations</h4>
+                <div id="observationsList" class="observations-list"></div>
+            </div>
+
+            <!-- Possible Issues -->
+            <div class="section">
+                <h4>💡 Possible Issues</h4>
+                <div id="issuesList" class="issues-list"></div>
+            </div>
+
+            <!-- Detailed Analysis -->
+            <div class="section">
+                <h4>🔍 Detailed Analysis</h4>
+                
+                <!-- Keyword Analysis -->
+                <div class="analysis-subsection">
+                    <h5>Keyword Coverage</h5>
+                    <div id="keywordAnalysis" class="keyword-analysis"></div>
+                </div>
+
+                <!-- Coverage Analysis -->
+                <div class="analysis-subsection">
+                    <h5>Chunk Statistics</h5>
+                    <div id="coverageAnalysis" class="coverage-analysis"></div>
+                </div>
+
+                <!-- Gap Analysis -->
+                <div class="analysis-subsection">
+                    <h5>Similarity-Relevance Gaps</h5>
+                    <div id="gapAnalysis" class="gap-analysis"></div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Result item template (hidden) -->
+        <template id="resultItemTemplate">
+            <div class="result-item">
+                <div class="result-header">
+                    <span class="result-rank">[<span class="rank-num"></span>]</span>
+                    <span class="result-score">Score: <span class="score-value"></span></span>
+                </div>
+                <div class="result-text"></div>
+            </div>
+        </template>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Vector-Flow: RAG Pipeline with Retrieval Analysis
+
+# Core dependencies
+chromadb>=0.3.21
+sentence-transformers>=2.2.0
+openai>=1.0.0
+
+# Web portal
+fastapi>=0.95.0
+uvicorn>=0.21.0
+pydantic>=1.10.0
